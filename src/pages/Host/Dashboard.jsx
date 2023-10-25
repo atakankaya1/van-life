@@ -2,7 +2,6 @@ import React from "react"
 import { Link, defer, Await, useLoaderData } from "react-router-dom"
 import { getHostVans } from "../../api"
 import { requireAuth } from "../../utils"
-import { BsStarFill } from "react-icons/bs"
 
 export async function loader({ request }) {
     await requireAuth(request)
@@ -30,6 +29,7 @@ export default function Dashboard() {
             </div>
         )
     }
+    
 
     return (
         <>
@@ -43,7 +43,7 @@ export default function Dashboard() {
             </section>
             <section className="host-dashboard-reviews">
                 <h2>Review score</h2>
-                <BsStarFill className="star" />
+              
                 <p>
                     <span>5.0</span>/5
                 </p>

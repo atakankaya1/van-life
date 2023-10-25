@@ -12,8 +12,6 @@ import About from "./pages/About"
 import Vans, { loader as vansLoader } from "./pages/Vans/Vans"
 import VanDetail, { loader as vanDetailLoader } from "./pages/Vans/VanDetail"
 import Dashboard, { loader as dashboardLoader } from "./pages/Host/Dashboard"
-import Income from "./pages/Host/Income"
-import Reviews from "./pages/Host/Reviews"
 import HostVans, { loader as hostVansLoader} from "./pages/Host/HostVans"
 import HostVanDetail, { loader as hostVanDetailLoader } from "./pages/Host/HostVanDetail"
 import HostVanInfo from "./pages/Host/HostVanInfo"
@@ -58,16 +56,6 @@ const router = createBrowserRouter(createRoutesFromElements(
         loader={dashboardLoader}
       />
       <Route
-        path="income"
-        element={<Income />}
-        loader={async ({ request }) => await requireAuth(request)}
-      />
-      <Route
-        path="reviews"
-        element={<Reviews />}
-        loader={async ({ request }) => await requireAuth(request)}
-      />
-      <Route
         path="vans"
         element={<HostVans />}
         errorElement={<Error />}
@@ -82,17 +70,17 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route
           index
           element={<HostVanInfo />}
-          loader={async ({ request }) => await requireAuth(request)}
+          loader={hostVanDetailLoader}
         />
         <Route
           path="pricing"
           element={<HostVanPricing />}
-          loader={async ({ request }) => await requireAuth(request)}
+          loader={hostVanDetailLoader}
         />
         <Route
           path="photos"
           element={<HostVanPhotos />}
-          loader={async ({ request }) => await requireAuth(request)}
+          loader={hostVanDetailLoader}
         />
       </Route>
     </Route>
@@ -100,12 +88,8 @@ const router = createBrowserRouter(createRoutesFromElements(
   </Route>
 ))
 
-function App() {
+export default function App() {
   return (
     <RouterProvider router={router} />
   )
 }
-
-ReactDOM
-  .createRoot(document.getElementById('root'))
-  .render(<App />);

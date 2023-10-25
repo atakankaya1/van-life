@@ -22,7 +22,10 @@ export async function action({ request }) {
     try {
         const data = await loginUser({ email, password })
         localStorage.setItem("loggedin", true)
-        return redirect(pathname)
+        const response = redirect(pathname)
+        response.body = true  
+        return response
+        
     } catch(err) {
         return err.message
     }
@@ -30,6 +33,7 @@ export async function action({ request }) {
 
 export default function Login() {
     const errorMessage = useActionData()
+    console.log("error mmaa: ", errorMessage)
     const message = useLoaderData()
     const navigation = useNavigation()
 
@@ -37,7 +41,7 @@ export default function Login() {
         <div className="login-container">
             <h1>Sign in to your account</h1>
             {message && <h3 className="red">{message}</h3>}
-            {errorMessage && <h3 className="red">{errorMessage}</h3>}
+            {errorMessage === "No user with those credentials found!" && <h3 className="red">{errorMessage}</h3>}
 
             <Form 
                 method="post" 

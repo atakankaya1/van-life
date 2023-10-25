@@ -1,8 +1,8 @@
 import React from "react"
-import { useOutletContext } from "react-router-dom"
+import { useOutletContext, useLoaderData } from "react-router-dom"
 
 export default function HostVanInfo() {
-    const { currentVan } = useOutletContext()
+    const currentVan = useLoaderData()
     
     return (
         <section className="host-van-detail-info">

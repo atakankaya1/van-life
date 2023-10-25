@@ -3,13 +3,20 @@ import { useParams, Link, NavLink, Outlet, useLoaderData } from "react-router-do
 import { getHostVans } from "../../api"
 import { requireAuth } from "../../utils"
 
+
 export async function loader({ params, request }) {
     await requireAuth(request)
-    return getHostVans(params.id)
+    console.log(getHostVans(params.id))
+    const data = await getHostVans(params.id)
+    console.log("data: ",data)
+    return data
 }
 
+
 export default function HostVanDetail() {
+    
     const currentVan = useLoaderData()
+    
 
     const activeStyles = {
         fontWeight: "bold",

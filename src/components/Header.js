@@ -7,6 +7,10 @@ export default function Header() {
         textDecoration: "underline",
         color: "#161616"
     }
+
+    function fakeLogOut() {
+        localStorage.removeItem("loggedin")
+    }
     
     return (
         <header>
@@ -30,12 +34,10 @@ export default function Header() {
                 >
                     Vans
                 </NavLink>
-                <NavLink 
-                    to="login"
-                    style={({isActive}) => isActive ? activeStyles : null}
-                >
+                <Link to="login" className="login-link">
                     Login
-                </NavLink>
+                </Link>
+                <button onClick={fakeLogOut}>X</button>
                 
             </nav>
         </header>
