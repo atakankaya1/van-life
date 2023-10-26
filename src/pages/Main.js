@@ -3,15 +3,6 @@ import { Link } from "react-router-dom"
 
 export default function Main() {
 
-    const [van, setVan] = React.useState(null)
-
-    useEffect(() => {
-        fetch(`/api/vans`)
-            .then(res => res.json())
-            .then(data => setVan(data.vans))
-    }, [])
-
-    console.log(van)
 
     return (
         <div className="home-container">

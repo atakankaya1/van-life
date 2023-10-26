@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState} from "react"
 import {
     useLoaderData,
     useNavigation,
@@ -7,10 +7,15 @@ import {
     useActionData
 } from "react-router-dom"
 import { loginUser } from "../api"
+import { login } from "../store/index"
+import { useDispatch, useSelector } from "react-redux"
 
 export function loader({ request }) {
     return new URL(request.url).searchParams.get("message")
 }
+
+
+//Form u form yap, massage'ı logged in false ise ver, reject olursa da oradan mesaj geliyor zaten. redirect'i de history ile çözebilirsin belki!!
 
 export async function action({ request }) {
     const formData = await request.formData()

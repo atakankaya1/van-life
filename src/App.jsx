@@ -9,10 +9,10 @@ import {
 } from "react-router-dom"
 import Main from "./pages/Main"
 import About from "./pages/About"
-import Vans, { loader as vansLoader } from "./pages/Vans/Vans"
-import VanDetail, { loader as vanDetailLoader } from "./pages/Vans/VanDetail"
+import Vans from "./pages/Vans/Vans"
+import VanDetail from "./pages/Vans/VanDetail"
 import Dashboard, { loader as dashboardLoader } from "./pages/Host/Dashboard"
-import HostVans, { loader as hostVansLoader} from "./pages/Host/HostVans"
+import HostVans, { loader as hostVansLoader } from "./pages/Host/HostVans"
 import HostVanDetail, { loader as hostVanDetailLoader } from "./pages/Host/HostVanDetail"
 import HostVanInfo from "./pages/Host/HostVanInfo"
 import HostVanPricing from "./pages/Host/HostVanPricing"
@@ -40,13 +40,12 @@ const router = createBrowserRouter(createRoutesFromElements(
       path="vans"
       element={<Vans />}
       errorElement={<Error />}
-      loader={vansLoader}
+      
     />
     <Route 
       path="vans/:id" 
       element={<VanDetail />} 
       errorElement={<Error />}
-      loader={vanDetailLoader}
     />
 
     <Route path="host" element={<HostLayout />}>
