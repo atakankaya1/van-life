@@ -4,7 +4,7 @@ import { getVans } from '../../api';
  const loadVans = createAsyncThunk('vans/loadVans', async (id) => {
     try {
       const response = await getVans(id);
-      return response; // Assuming your API returns an array of vans
+      return response; 
     } catch (error) {
       throw error;
     }

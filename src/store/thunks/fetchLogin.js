@@ -4,8 +4,10 @@ import { loginUser } from '../../api';
  const login = createAsyncThunk('login/loginAsync', async (creds) => {
     try {
       const user = await loginUser(creds);
-      return user; // Assuming your API returns an array of vans
+      console.log(user)
+      return user;
     } catch (error) {
+      
       throw error;
     }
   });

@@ -8,7 +8,8 @@ const userSlice = createSlice({
     name: "",
     id: "",
     loggedIn: false,
-    error: null // You can define the initial state for the user here
+    error: null,
+    pen: false
   },
   reducers: {
     logoutUser: (state) => {
@@ -18,16 +19,21 @@ const userSlice = createSlice({
   extraReducers(builder){
     builder.addCase(login.pending, (state, action) => {
         state.isLoading = true
+        state.pen = true
     })
     builder.addCase(login.fulfilled, (state, action) => {
+      console.log("action: ", action)
         state.isLoading = false
         state.loggedIn = true
-        state.name = action.payload.name
-        state.id = action.payload.id
+        state.name = action.payload.user.name
+        state.id = action.payload.user.id
+        state.pen = false
     })
     builder.addCase(login.rejected, (state, action) => {
+      console.log("reject:  ", action)
         state.isLoading = false
-        state.error = action.error
+        state.error = "No user with those credentials found!"
+        state.pen = false
     })
    }
 });
