@@ -1,19 +1,10 @@
 import React, { useEffect, useState} from "react"
 import {
-    useLoaderData,
-    Form,
-    redirect,
-    useActionData,
+    useSearchParams,
     useNavigate
 } from "react-router-dom"
-import { loginUser } from "../api"
 import { login } from "../store/index"
 import { useDispatch, useSelector } from "react-redux"
-
-
-//Form u form yap, massage'ı logged in false ise ver, reject olursa da oradan mesaj geliyor zaten. redirect'i de history ile çözebilirsin belki!!
-
-// host sayfasında loginden sonra yönlendirme yapma logic'i düzelt.
 
 
 export default function Login() {
@@ -22,6 +13,8 @@ export default function Login() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const dispatch = useDispatch()
+    const [queryParameters] = useSearchParams()
+
     const {isLoading,
         name,
         id,
@@ -48,14 +41,14 @@ export default function Login() {
         localStorage.setItem("loggedin", true)
     }
 
-   
-    
-    // {message && <h3 className="red">{message}</h3>}
+   // refreshten sonrası..
+
     return (
         <div className="login-container">
             <h1>Sign in to your account</h1>
             
             {error !== null && <h3 className="red">{error}</h3>}
+            {queryParameters && <h3 className="red">{queryParameters.get("message")}</h3>} 
 
             <form 
                 method="post" 
