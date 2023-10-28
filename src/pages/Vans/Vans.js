@@ -11,7 +11,7 @@ export default function Vans() {
     })
 
     useEffect(() => {
-        console.log(dispatch(loadVans()))
+        dispatch(loadVans())
     }, [dispatch])
 
 

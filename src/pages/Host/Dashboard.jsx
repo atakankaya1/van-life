@@ -1,18 +1,35 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link, defer, Await, useLoaderData } from "react-router-dom"
 import { getHostVans } from "../../api"
 import { requireAuth } from "../../utils"
+import { useDispatch, useSelector } from "react-redux"
+import { loadVans } from "../../store/index"
 
-export async function loader({ request }) {
+export async function loader({ request}) {
     await requireAuth(request)
-    return defer({ vans: getHostVans() })
+    return null
 }
 
 export default function Dashboard() {
-    const loaderData = useLoaderData()
+    
+    const dispatch = useDispatch()
+    const {data} = useSelector((state)=>{
+        return state.vans
+    })
+    const {id} = useSelector((state)=>{
+        return state.user
+    })
+    useEffect(() => {
+        dispatch(loadVans())
+    }, [dispatch])
 
-    function renderVanElements(vans) {
-        const hostVansEls = vans.map((van) => (
+    const bak = data.filter((van) => van.hostId === id);
+    console.log("bak:", data)
+    console.log("id:", id)
+    
+
+    
+        const hostVansEls = bak.map((van) => (
             <div className="host-van-single" key={van.id}>
                 <img src={van.imageUrl} alt={`Photo of ${van.name}`} />
                 <div className="host-van-info">
@@ -22,14 +39,6 @@ export default function Dashboard() {
                 <Link to={`vans/${van.id}`}>View</Link>
             </div>
         ))
-
-        return (
-            <div className="host-vans-list">
-                <section>{hostVansEls}</section>
-            </div>
-        )
-    }
-    
 
     return (
         <>
@@ -54,9 +63,11 @@ export default function Dashboard() {
                     <h2>Your listed vans</h2>
                     <Link to="vans">View all</Link>
                 </div>
-                <React.Suspense fallback={<h3>Loading...</h3>}>
-                    <Await resolve={loaderData.vans}>{renderVanElements}</Await>
-                </React.Suspense>
+                
+            <div className="host-vans-list">
+                <section>{hostVansEls}</section>
+            </div>
+                
             </section>
         </>
     )

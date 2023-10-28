@@ -19,6 +19,7 @@ const vanSlice = createSlice({
   extraReducers(builder){
     builder.addCase(loadVans.pending, (state, action) => {
         state.isLoading = true
+        state.error = null
     })
     builder.addCase(loadVans.fulfilled, (state, action) => {
         state.isLoading = false

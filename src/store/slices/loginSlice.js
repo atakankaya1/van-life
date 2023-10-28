@@ -14,12 +14,15 @@ const userSlice = createSlice({
   reducers: {
     logoutUser: (state) => {
       state.loggedIn = false;
+      state.name = "";
+      state.id = "";
     },
   }, 
   extraReducers(builder){
     builder.addCase(login.pending, (state, action) => {
         state.isLoading = true
         state.pen = true
+        state.error = null
     })
     builder.addCase(login.fulfilled, (state, action) => {
       console.log("action: ", action)
@@ -28,6 +31,7 @@ const userSlice = createSlice({
         state.name = action.payload.user.name
         state.id = action.payload.user.id
         state.pen = false
+        
     })
     builder.addCase(login.rejected, (state, action) => {
       console.log("reject:  ", action)

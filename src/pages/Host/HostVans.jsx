@@ -1,18 +1,33 @@
-import React from "react"
+import React, {useEffect} from "react"
 import { Link, useLoaderData, defer, Await } from "react-router-dom"
 import { getHostVans } from "../../api"
 import { requireAuth } from "../../utils"
+import { useDispatch, useSelector } from "react-redux"
+import { loadVans } from "../../store"
 
 export async function loader({ request }) {
     await requireAuth(request)
-    return defer({ vans: getHostVans() })
+    return null
 }
 
 export default function HostVans() {
     const dataPromise = useLoaderData()
 
-    function renderVanElements(vans) {
-        const hostVansEls = vans.map(van => (
+    const dispatch = useDispatch()
+    const {data} = useSelector((state)=>{
+        return state.vans
+    })
+    const {id} = useSelector((state)=>{
+        return state.user
+    })
+    useEffect(() => {
+        dispatch(loadVans())
+    }, [dispatch])
+
+    const bak = data.filter((van) => van.hostId === id);
+  
+    
+        const hostVansEls = bak.map(van => (
             <Link
                 to={van.id}
                 key={van.id}
@@ -27,24 +42,20 @@ export default function HostVans() {
                 </div>
             </Link>
         ))
-        return (
-            <div className="host-vans-list">
-                <section>
-                    {hostVansEls}
-                </section>
-            </div>
-        )
-    }
-
+       
+    
 
     return (
         <section>
             <h1 className="host-vans-title">Your listed vans</h1>
-            <React.Suspense fallback={<h2>Loading vans...</h2>}>
-                <Await resolve={dataPromise.vans}>
-                    {renderVanElements}
-                </Await>
-            </React.Suspense>
+            
+                <div className="host-vans-list">
+                <section>
+                    {hostVansEls}
+                </section>
+            </div>
+                
+               
         </section>
     )
 }

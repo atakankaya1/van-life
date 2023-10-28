@@ -1,10 +1,10 @@
 import React, { useEffect, useState} from "react"
 import {
     useLoaderData,
-    useNavigation,
     Form,
     redirect,
-    useActionData
+    useActionData,
+    useNavigate
 } from "react-router-dom"
 import { loginUser } from "../api"
 import { login } from "../store/index"
@@ -17,10 +17,8 @@ import { useDispatch, useSelector } from "react-redux"
 
 
 export default function Login() {
-    const errorMessage = useActionData()
-    console.log("error mmaa: ", errorMessage)
-    const message = useLoaderData()
-    const navigation = useNavigation()
+    
+    const navigate = useNavigate()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const dispatch = useDispatch()
@@ -35,24 +33,29 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try{
-         dispatch(login({ email, password }))
-         const response = redirect("/host")
-         response.body = true  
+         await dispatch(login({ email, password }))
+         const response = navigate("/host")
+         response.body = true
          return response
+            
         } catch (err) {
             console.log(err.message) 
         }
     }
-    console.log("log: ", loggedIn)
+
+    console.log(error)
     if(loggedIn){
         localStorage.setItem("loggedin", true)
     }
 
+   
+    
+    // {message && <h3 className="red">{message}</h3>}
     return (
         <div className="login-container">
             <h1>Sign in to your account</h1>
-            {message && <h3 className="red">{message}</h3>}
-            {error === "No user with those credentials found!" && <h3 className="red">{error}</h3>}
+            
+            {error !== null && <h3 className="red">{error}</h3>}
 
             <form 
                 method="post" 
@@ -74,8 +77,7 @@ export default function Login() {
                 <button
                     disabled={isLoading === true}
                 >
-                    {pen ? "Logging in..."
-                        : "Log in"
+                    {pen ? "Logging in..." : loggedIn ? "Logged In" : "Log in"
                     }
                 </button>
             </form>
