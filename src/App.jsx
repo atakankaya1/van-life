@@ -17,14 +17,28 @@ import HostVanDetail, { loader as hostVanDetailLoader } from "./pages/Host/HostV
 import HostVanInfo from "./pages/Host/HostVanInfo"
 import HostVanPricing from "./pages/Host/HostVanPricing"
 import HostVanPhotos from "./pages/Host/HostVanPhotos"
-
 import Login from "./pages/Login"
 import Layout from "./components/Layout"
 import HostLayout from "./components/HostLayout"
 import Error from "./components/Error"
-import { requireAuth } from "./utils"
-
 import "./server"
+import { redirect } from "react-router-dom"
+import { useSelector } from 'react-redux';
+
+
+export async function requireAuth(request) {
+    const isLoggedIn = localStorage.getItem("loggedin")
+    const {
+      loggedIn} = useSelector((state)=>{
+      return state.user
+  })
+
+    if (!loggedIn) {
+        const response = redirect(`/login?message=You must log in first.`)
+        response.body = true 
+        throw response
+    }
+}
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>

@@ -20,7 +20,7 @@ export default function Header() {
     })
 
     const fakeLogOut = () => {
-        localStorage.removeItem("loggedin")
+        localStorage.removeItem("user")
         dispatch(logoutUser())
         navigate("/login")
     }

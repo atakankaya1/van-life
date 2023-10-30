@@ -3,7 +3,7 @@ import { Link, defer, Await, useLoaderData } from "react-router-dom"
 import { getHostVans } from "../../api"
 import { requireAuth } from "../../utils"
 import { useDispatch, useSelector } from "react-redux"
-import { loadVans } from "../../store/index"
+import { store, loadVans, loginedInUser } from "../../store/index"
 
 export async function loader({ request}) {
     await requireAuth(request)
@@ -13,6 +13,10 @@ export async function loader({ request}) {
 export default function Dashboard() {
     
     const dispatch = useDispatch()
+    
+
+
+
     const {data} = useSelector((state)=>{
         return state.vans
     })

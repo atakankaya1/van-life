@@ -1,7 +1,8 @@
 import React, { useEffect, useState} from "react"
 import {
     useSearchParams,
-    useNavigate
+    useNavigate,redirect, json
+    
 } from "react-router-dom"
 import { login } from "../store/index"
 import { useDispatch, useSelector } from "react-redux"
@@ -22,25 +23,30 @@ export default function Login() {
         error,pen} = useSelector((state)=>{
         return state.user
     })
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
         try{
-         await dispatch(login({ email, password }))
-         const response = navigate("/host")
-         response.body = true
-         return response
-            
+            await dispatch(login({ email, password }))
+           
         } catch (err) {
-            console.log(err.message) 
+            console.log("err: ", err.message) 
+            
         }
     }
 
-    console.log(error)
-    if(loggedIn){
-        localStorage.setItem("loggedin", true)
-    }
+    useEffect(() => {
+        if (loggedIn) {
+            navigate("/host")
+            localStorage.setItem("user", JSON.stringify({name: name, id:id, loggedIn:true}))
+        } else {
+            navigate("/login")
+        }
+    }, [loggedIn, error]);
 
+    console.log(error)
+
+    
    // refreshten sonrası..
 
     return (
