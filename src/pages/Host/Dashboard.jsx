@@ -13,10 +13,7 @@ export async function loader({ request}) {
 export default function Dashboard() {
     
     const dispatch = useDispatch()
-    
-
-
-
+    const localData = JSON.parse(localStorage.getItem("user"))
     const {data} = useSelector((state)=>{
         return state.vans
     })
@@ -24,7 +21,11 @@ export default function Dashboard() {
         return state.user
     })
     useEffect(() => {
+        if(localData){
+            dispatch(loginedInUser(localData))
         dispatch(loadVans())
+        }
+        
     }, [dispatch])
 
     const bak = data.filter((van) => van.hostId === id);

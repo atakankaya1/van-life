@@ -37,8 +37,9 @@ export default function Login() {
 
     useEffect(() => {
         if (loggedIn) {
-            navigate("/host")
             localStorage.setItem("user", JSON.stringify({name: name, id:id, loggedIn:true}))
+            localStorage.setItem("logg", true)
+            navigate("/host")
         } else {
             navigate("/login")
         }

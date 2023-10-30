@@ -21,6 +21,7 @@ export default function Header() {
 
     const fakeLogOut = () => {
         localStorage.removeItem("user")
+        localStorage.removeItem("logg")
         dispatch(logoutUser())
         navigate("/login")
     }

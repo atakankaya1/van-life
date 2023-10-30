@@ -23,22 +23,9 @@ import HostLayout from "./components/HostLayout"
 import Error from "./components/Error"
 import "./server"
 import { redirect } from "react-router-dom"
-import { useSelector } from 'react-redux';
 
 
-export async function requireAuth(request) {
-    const isLoggedIn = localStorage.getItem("loggedin")
-    const {
-      loggedIn} = useSelector((state)=>{
-      return state.user
-  })
 
-    if (!loggedIn) {
-        const response = redirect(`/login?message=You must log in first.`)
-        response.body = true 
-        throw response
-    }
-}
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
