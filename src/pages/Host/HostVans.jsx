@@ -1,6 +1,5 @@
 import React, {useEffect} from "react"
 import { Link, useLoaderData, defer, Await } from "react-router-dom"
-import { getHostVans } from "../../api"
 import { requireAuth } from "../../utils"
 import { useDispatch, useSelector } from "react-redux"
 import { loadVans } from "../../store"
