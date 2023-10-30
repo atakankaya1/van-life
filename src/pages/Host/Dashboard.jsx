@@ -1,9 +1,8 @@
 import React, { useEffect } from "react"
-import { Link, defer, Await, useLoaderData } from "react-router-dom"
-import { getHostVans } from "../../api"
+import { Link } from "react-router-dom"
 import { requireAuth } from "../../utils"
 import { useDispatch, useSelector } from "react-redux"
-import { store, loadVans, loginedInUser } from "../../store/index"
+import { loadVans, loginedInUser } from "../../store/index"
 
 export async function loader({ request}) {
     await requireAuth(request)
@@ -23,7 +22,7 @@ export default function Dashboard() {
     useEffect(() => {
         if(localData){
             dispatch(loginedInUser(localData))
-        dispatch(loadVans())
+            dispatch(loadVans())
         }
         
     }, [dispatch])
@@ -50,18 +49,10 @@ export default function Dashboard() {
             <section className="host-dashboard-earnings">
                 <div className="info">
                     <h1>Welcome!</h1>
-                    <p>Income last <span>30 days</span></p>
-                    <h2>$2,260</h2>
+                    <p>This is your host page.</p>
+                    
                 </div>
-                <Link to="income">Details</Link>
-            </section>
-            <section className="host-dashboard-reviews">
-                <h2>Review score</h2>
-              
-                <p>
-                    <span>5.0</span>/5
-                </p>
-                <Link to="reviews">Details</Link>
+                
             </section>
             <section className="host-dashboard-vans">
                 <div className="top">

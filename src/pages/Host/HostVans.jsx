@@ -10,7 +10,6 @@ export async function loader({ request }) {
 }
 
 export default function HostVans() {
-    const dataPromise = useLoaderData()
 
     const dispatch = useDispatch()
     const {data} = useSelector((state)=>{
@@ -19,9 +18,7 @@ export default function HostVans() {
     const {id} = useSelector((state)=>{
         return state.user
     })
-    useEffect(() => {
-        dispatch(loadVans())
-    }, [dispatch])
+    
 
     const bak = data.filter((van) => van.hostId === id);
   
@@ -52,6 +49,8 @@ export default function HostVans() {
                 <section>
                     {hostVansEls}
                 </section>
+                <Link
+                to="addVan">Add Van</Link>
             </div>
                 
                

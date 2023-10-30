@@ -1,14 +1,13 @@
 import React from "react"
-import { useParams, Link, NavLink, Outlet, useLoaderData } from "react-router-dom"
-import { getHostVans } from "../../api"
+import { Link, NavLink, Outlet, useLoaderData } from "react-router-dom"
 import { requireAuth } from "../../utils"
+import { store, loadVans} from "../../store/index"
 
 
 export async function loader({ params, request }) {
     await requireAuth(request)
-    console.log(getHostVans(params.id))
-    const data = await getHostVans(params.id)
-    console.log("data: ",data)
+    const vanStore = store.getState()
+    const data = vanStore.vans.data.find(van=>van.id === params.id)
     return data
 }
 

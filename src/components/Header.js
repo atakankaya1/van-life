@@ -27,7 +27,6 @@ export default function Header() {
     }
 
     const localLogin = localStorage.getItem('loggedin');
-    console.log("log: ",localLogin)
 
     
     return (

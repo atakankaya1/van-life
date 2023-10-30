@@ -10,7 +10,7 @@ const vanSlice = createSlice({
   },
   reducers: {
     addVan: (state, action) => {
-      state.vans.push(action.payload);
+      state.data.push(action.payload);
     },
     removeVan: (state, action) => {
       state.vans = state.vans.filter((van) => van.id !== action.payload);

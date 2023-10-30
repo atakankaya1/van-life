@@ -17,6 +17,7 @@ import HostVanDetail, { loader as hostVanDetailLoader } from "./pages/Host/HostV
 import HostVanInfo from "./pages/Host/HostVanInfo"
 import HostVanPricing from "./pages/Host/HostVanPricing"
 import HostVanPhotos from "./pages/Host/HostVanPhotos"
+import AddVan from './pages/Host/AddVan';
 import Login from "./pages/Login"
 import Layout from "./components/Layout"
 import HostLayout from "./components/HostLayout"
@@ -61,6 +62,15 @@ const router = createBrowserRouter(createRoutesFromElements(
         loader={hostVansLoader}
       />
       <Route
+        path="vans/addVan"
+        element={<AddVan />}
+        errorElement={<Error />}
+        loader={hostVansLoader}
+      />
+      
+      
+     
+      <Route
         path="vans/:id"
         element={<HostVanDetail />}
         errorElement={<Error />}
@@ -82,6 +92,7 @@ const router = createBrowserRouter(createRoutesFromElements(
           loader={hostVanDetailLoader}
         />
       </Route>
+      
     </Route>
     
   </Route>
