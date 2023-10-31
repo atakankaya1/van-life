@@ -5,11 +5,10 @@ import { addVan } from "../../store";
 import { nanoid } from "@reduxjs/toolkit";
 
 
-export async function loader({ request}) {
-    await requireAuth(request)
+export async function loader() {
+    await requireAuth()
     return null
 }
-
 
 export default function AddVan() {
   const dispatch = useDispatch();
@@ -77,9 +76,9 @@ export default function AddVan() {
           Type:
           <select  name="type" value={vanData.type} onChange={handleInputChange} >
             <option value="">Select a Type</option>
-            <option value="Type 1">simple</option>
-            <option value="Type 2">rugged</option>
-            <option value="Type 3">luxury</option>
+            <option value="simple">simple</option>
+            <option value="rugged">rugged</option>
+            <option value="luxury">luxury</option>
           </select>
         </label>
         <button type="submit">Add Van</button>

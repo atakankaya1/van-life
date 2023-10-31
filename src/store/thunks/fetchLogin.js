@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-//import { loginUser } from '../../api';
 
  const login = createAsyncThunk('login/loginAsync', async (creds) => {
   async function loginUser(creds) {

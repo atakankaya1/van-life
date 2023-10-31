@@ -1,12 +1,7 @@
 import React, { useEffect, useState} from "react"
-import {
-    useSearchParams,
-    useNavigate,redirect, json
-    
-} from "react-router-dom"
+import { useSearchParams, useNavigate } from "react-router-dom"
 import { login } from "../store/index"
 import { useDispatch, useSelector } from "react-redux"
-
 
 export default function Login() {
     
@@ -45,10 +40,6 @@ export default function Login() {
         }
     }, [loggedIn, error]);
 
-    console.log(error)
-
-    
-   // refreshten sonrası..
 
     return (
         <div className="login-container">

@@ -1,12 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  Route,
-  Link
-} from "react-router-dom"
+  Route} from "react-router-dom"
 import Main from "./pages/Main"
 import About from "./pages/About"
 import Vans from "./pages/Vans/Vans"
@@ -23,7 +20,6 @@ import Layout from "./components/Layout"
 import HostLayout from "./components/HostLayout"
 import Error from "./components/Error"
 import "./server"
-import { redirect } from "react-router-dom"
 
 
 
@@ -35,20 +31,17 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route
       path="login"
       element={<Login />}
-      
     />
     <Route
       path="vans"
       element={<Vans />}
       errorElement={<Error />}
-      
     />
     <Route 
       path="vans/:id" 
       element={<VanDetail />} 
       errorElement={<Error />}
     />
-
     <Route path="host" element={<HostLayout />}>
       <Route
         index
@@ -68,8 +61,6 @@ const router = createBrowserRouter(createRoutesFromElements(
         loader={hostVansLoader}
       />
       
-      
-     
       <Route
         path="vans/:id"
         element={<HostVanDetail />}

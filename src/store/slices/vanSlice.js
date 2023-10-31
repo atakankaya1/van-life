@@ -9,10 +9,6 @@ const vanSlice = createSlice({
     error: null
   },
   reducers: {
-    
-    removeVan: (state, action) => {
-      state.vans = state.vans.filter((van) => van.id !== action.payload);
-    },
   },
   extraReducers(builder){
     builder.addCase(loadVans.pending, (state, action) => {

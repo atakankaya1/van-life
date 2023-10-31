@@ -4,8 +4,8 @@ import { requireAuth } from "../../utils"
 import { useDispatch, useSelector } from "react-redux"
 import { loadVans, loginedInUser, deleteVan } from "../../store/index"
 
-export async function loader({ request}) {
-    await requireAuth(request)
+export async function loader() {
+    await requireAuth()
     return null
 }
 
@@ -44,8 +44,8 @@ export default function Dashboard() {
                     <h3>{van.name}</h3>
                     <p>${van.price}/day</p>
                 </div>
-                <Link to={`vans/${van.id}`}>View</Link>
-                <button onClick={()=>handleDelete(van.id)} > Delete </button>
+                <Link className="view" to={`vans/${van.id}`}>View</Link>
+                <button className={"delete-btn"} onClick={()=>handleDelete(van.id)} > Delete </button>
             </div>
         ))
 
@@ -62,7 +62,7 @@ export default function Dashboard() {
             <section className="host-dashboard-vans">
                 <div className="top">
                     <h2>Your listed vans</h2>
-                    <Link to="vans">View all</Link>
+                    <Link className="view-all" to="vans">View all</Link>
                 </div>
                 
             <div className="host-vans-list">

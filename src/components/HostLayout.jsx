@@ -18,8 +18,6 @@ export default function HostLayout() {
                 >
                     Dashboard
                 </NavLink>
-
-                
                 <NavLink
                     to="vans"
                     style={({ isActive }) => isActive ? activeStyles : null}

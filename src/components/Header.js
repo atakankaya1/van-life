@@ -25,10 +25,9 @@ export default function Header() {
         dispatch(logoutUser())
         navigate("/login")
     }
-
+    
     const localLogin = localStorage.getItem('loggedin');
 
-    
     return (
         <header>
             <Link className="site-logo" to="/">#VanLife</Link>
@@ -52,16 +51,16 @@ export default function Header() {
                     Vans
                 </NavLink>
                 {
-                    (localLogin || loggedIn) ?
-                    <a to="login" className="login-link">
-                    
-                    </a> :
+                    (!localLogin || !loggedIn) ?
+                    <Link to="host" className="login-link">
+                        {name || "Login"}
+                    </Link> :
                     <Link to="login" className="login-link">
                         Login
                     </Link>
                 }
                 
-                {(loggedIn || localLogin) && <button onClick={fakeLogOut}>Logout</button>}
+                {(loggedIn || localLogin) && <button className="logout" onClick={fakeLogOut}>Logout</button>}
                 
             </nav>
         </header>

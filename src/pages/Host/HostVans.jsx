@@ -1,17 +1,15 @@
-import React, {useEffect} from "react"
-import { Link, useLoaderData, defer, Await } from "react-router-dom"
+import React from "react"
+import { Link } from "react-router-dom"
 import { requireAuth } from "../../utils"
 import { useDispatch, useSelector } from "react-redux"
-import { loadVans } from "../../store"
 
-export async function loader({ request }) {
-    await requireAuth(request)
+export async function loader() {
+    await requireAuth()
     return null
 }
 
 export default function HostVans() {
 
-    const dispatch = useDispatch()
     const {data} = useSelector((state)=>{
         return state.vans
     })
@@ -38,8 +36,6 @@ export default function HostVans() {
                 </div>
             </Link>
         ))
-       
-    
 
     return (
         <section>
@@ -49,7 +45,7 @@ export default function HostVans() {
                 <section>
                     {hostVansEls}
                 </section>
-                <Link
+                <Link className="add-van"
                 to="addVan">Add Van</Link>
             </div>
                 
