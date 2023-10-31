@@ -18,12 +18,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
     return data
 }
     try {
-      const user = await loginUser(creds);
+      const user = await loginUser(creds)
       console.log(user)
-      return user;
+      return user
     } catch (error) {
       
-      throw error;
+      throw error
     }
   });
 

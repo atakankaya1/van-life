@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 import { loadVans } from "../thunks/fetchVans"
 
 const vanSlice = createSlice({
@@ -27,7 +27,7 @@ const vanSlice = createSlice({
   }
 });
 
-export const { addVan, removeVan } = vanSlice.actions;
-export const selectVans = (state) => state.vans.vans;
+export const { addVan, removeVan } = vanSlice.actions
+export const selectVans = (state) => state.vans.vans
 
-export const vanReducer = vanSlice.reducer;
+export const vanReducer = vanSlice.reducer
