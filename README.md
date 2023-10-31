@@ -1,20 +1,27 @@
-# Project Name
+# Van Life
 
-This project is a [brief description or purpose of the project]
+This is a website renting vans to customers. It has host section which hosts could add or remove vans that they want to rent out. (IMPORTANT NOTE: The webpage is about testing login logic and data fetching right now. 'Rent a van' button under vans are not functional yet.) It's built using React, Redux, and Firebase,(also MirageJS), leveraging React Router for navigation. This is a personal learning project aiming to combine react-router, redux, and backend responses.
 
-- [Overview](#overview)
 - [Features](#features)
 - [Dependencies](#dependencies)
 - [Setup](#setup)
 
-## Overview
-
-[Provide a concise overview of the project]
-
 ## Features
 
-- [List down the key features of the project]
-- [Add any additional features here]
+Key Features
+
+   1.User Authentication
+        Login Page: Hosts can securely log in to the application.
+
+   2.Van Management
+        Add Vans: Hosts have the ability to add new vans to the inventory.
+        Remove Vans: Hosts can remove vans from the inventory.
+        Host Vans: Allowing hosts to view their inventory.
+
+   3.Vans Display
+        Vans Tab: The application displays all available vans.
+
+These features allow hosts to manage their van inventory efficiently and securely, providing a clear interface to add, remove, and display vans within the application.
 
 ## Dependencies
 
@@ -37,7 +44,6 @@ This project is a [brief description or purpose of the project]
 Navigate to your project directory and install the necessary dependencies:
 
 `
-cd your-project
 npm install
 `
 
