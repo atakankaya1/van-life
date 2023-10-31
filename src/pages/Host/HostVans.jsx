@@ -20,7 +20,7 @@ export default function HostVans() {
     })
     
 
-    const bak = data.filter((van) => van.hostId === id);
+    const bak = data.filter((van) => van.hostId == id);
   
     
         const hostVansEls = bak.map(van => (

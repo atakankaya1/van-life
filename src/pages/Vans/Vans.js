@@ -18,7 +18,7 @@ export default function Vans() {
     const [searchParams, setSearchParams] = useSearchParams()
 
     const vans = data
-    console.log(vans)
+    console.log("vans: ",vans)
 
     const typeFilter = searchParams.get("type")
 

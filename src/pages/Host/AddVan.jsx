@@ -20,8 +20,8 @@ export default function AddVan() {
     id: nanoid(),
     name: "",
     price: 0,
-    description: "",
-    imageUrl: "",
+    description: "Comfortable van with many utilities!",
+    imageUrl: "https://picsum.photos/200/300" ,
     type: "",
     hostId: id 
   });
@@ -35,7 +35,7 @@ export default function AddVan() {
     e.preventDefault();
     dispatch(addVan(vanData));
     setVanData({
-      id: "",
+      id: nanoid(),
       name: "",
       price: 0,
       description: "",
@@ -55,19 +55,32 @@ export default function AddVan() {
         </label>
         <label>
           Price:
-          <input type="number" name="price" value={vanData.price} onChange={handleInputChange} />
+          <input type="number" name="price" value={vanData.price} onChange={handleInputChange} min="0" />
         </label>
         <label>
           Description:
-          <textarea name="description" value={vanData.description} onChange={handleInputChange} />
+          <textarea 
+          name="description" 
+          value={vanData.description} 
+          onChange={handleInputChange}
+          placeholder="Comfortable van with many utilities!" />
         </label>
         <label>
           Image URL:
-          <input type="text" name="imageUrl" value={vanData.imageUrl} onChange={handleInputChange} />
+          <input type="text" 
+          name="imageUrl" 
+          value={vanData.imageUrl} 
+          onChange={handleInputChange}
+          placeholder="https://picsum.photos/200/300" />
         </label>
         <label>
           Type:
-          <input type="text" name="type" value={vanData.type} onChange={handleInputChange} />
+          <select  name="type" value={vanData.type} onChange={handleInputChange} >
+            <option value="">Select a Type</option>
+            <option value="Type 1">simple</option>
+            <option value="Type 2">rugged</option>
+            <option value="Type 3">luxury</option>
+          </select>
         </label>
         <button type="submit">Add Van</button>
       </form>

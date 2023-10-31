@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { requireAuth } from "../../utils"
 import { useDispatch, useSelector } from "react-redux"
-import { loadVans, loginedInUser } from "../../store/index"
+import { loadVans, loginedInUser, deleteVan } from "../../store/index"
 
 export async function loader({ request}) {
     await requireAuth(request)
@@ -27,13 +27,17 @@ export default function Dashboard() {
         
     }, [dispatch])
 
-    const bak = data.filter((van) => van.hostId === id);
-    console.log("bak:", data)
-    console.log("id:", id)
+    const vans = data.filter((van) => van.hostId == id);
+
+    function handleDelete (vanId) {
+        dispatch(deleteVan(vanId))
+        dispatch(loadVans())
+    }
+    
     
 
     
-        const hostVansEls = bak.map((van) => (
+        const hostVansEls = vans.map((van) => (
             <div className="host-van-single" key={van.id}>
                 <img src={van.imageUrl} alt={`Photo of ${van.name}`} />
                 <div className="host-van-info">
@@ -41,6 +45,7 @@ export default function Dashboard() {
                     <p>${van.price}/day</p>
                 </div>
                 <Link to={`vans/${van.id}`}>View</Link>
+                <button onClick={()=>handleDelete(van.id)} > Delete </button>
             </div>
         ))
 
