@@ -1,42 +1,77 @@
-import React from "react"
+import React, { useEffect, useState} from "react"
+import { useSearchParams, useNavigate } from "react-router-dom"
+import { login } from "../store/index"
+import { useDispatch, useSelector } from "react-redux"
 
 export default function Login() {
-    const [loginFormData, setLoginFormData] = React.useState({ email: "", password: "" })
+    
+    const navigate = useNavigate()
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
+    const dispatch = useDispatch()
+    const [queryParameters] = useSearchParams()
 
-    function handleSubmit(e) {
+    const {isLoading,
+        name,
+        id,
+        loggedIn,
+        error,pen} = useSelector((state)=>{
+        return state.user
+    })
+    
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(loginFormData)
+        try{
+            await dispatch(login({ email, password }))
+           
+        } catch (err) {
+            console.log("err: ", err.message) 
+            
+        }
     }
 
-    function handleChange(e) {
-        const { name, value } = e.target
-        setLoginFormData(prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
+    useEffect(() => {
+        if (loggedIn) {
+            localStorage.setItem("user", JSON.stringify({name: name, id:id, loggedIn:true}))
+            localStorage.setItem("logg", true)
+            navigate("/host")
+        } else {
+            navigate("/login")
+        }
+    }, [loggedIn, error]);
+
 
     return (
         <div className="login-container">
             <h1>Sign in to your account</h1>
-            <form onSubmit={handleSubmit} className="login-form">
+            
+            {error !== null && <h3 className="red">{error}</h3>}
+            {queryParameters && <h3 className="red">{queryParameters.get("message")}</h3>} 
+
+            <form 
+                method="post" 
+                className="login-form" 
+                onSubmit={handleSubmit}
+            >
                 <input
                     name="email"
-                    onChange={handleChange}
                     type="email"
                     placeholder="Email address"
-                    value={loginFormData.email}
+                    onChange={(e)=>setEmail(e.target.value)}
                 />
                 <input
                     name="password"
-                    onChange={handleChange}
                     type="password"
                     placeholder="Password"
-                    value={loginFormData.password}
+                    onChange={(e)=>setPassword(e.target.value)}
                 />
-                <button>Log in</button>
+                <button
+                    disabled={isLoading === true}
+                >
+                    {pen ? "Logging in..." : loggedIn ? "Logged In" : "Log in"
+                    }
+                </button>
             </form>
         </div>
     )
-
 }

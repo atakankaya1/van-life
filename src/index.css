@@ -535,3 +535,69 @@ i[class*='van-type-'] {
 .red {
   color: #cc0000;
 }
+
+.delete-btn{
+  margin: 1em;
+  color: white;
+  background-color: #cc0000;
+  height: 34px;
+  padding: 6px 26px;
+  font-style: normal;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
+}
+.delete-btn:hover{
+  cursor: pointer;
+  background-color: red;
+}
+
+.view{
+  margin: 0 15px 0 30px;
+}
+
+.view-all{
+  margin: 1em;
+  margin-bottom: 2em;
+  color: white;
+  background-color: #FF8C38;
+  height: 34px;
+  padding: 6px 26px;
+  font-style: normal;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.add-van{
+  margin: 1em;
+  margin-bottom: 2em;
+  color: white;
+  background-color: #79894a;
+  height: 34px;
+  padding: 6px 26px;
+  font-style: normal;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.add-van:hover{
+  background-color: green;
+}
+
+.logout{
+     font-weight: bold;
+     color:white;
+     border: none;
+     background-color: #e06666;
+     margin-right: 1em;
+     border-radius: 5px;
+}
+.logout:hover{
+    background-color: red;
+    transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
+}

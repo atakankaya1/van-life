@@ -1,16 +1,24 @@
 import React, {useEffect} from "react"
-import { Link, useSearchParams, useLoaderData } from "react-router-dom"
-import { getVans } from "../../api"
+import { Link, useSearchParams } from "react-router-dom"
+import { loadVans } from "../../store/index"
+import { useDispatch, useSelector } from "react-redux"
 
-
-export function loader() {
-  return getVans()
-}
 
 export default function Vans() {
+    const dispatch = useDispatch()
+    const {isLoading, data, error} = useSelector((state)=>{
+        return state.vans
+    })
+
+    useEffect(() => {
+        dispatch(loadVans())
+    }, [dispatch])
+
+
     const [searchParams, setSearchParams] = useSearchParams()
-    const [error, setError] = React.useState(null)
-    const vans = useLoaderData()
+
+    const vans = data
+    console.log("vans: ",vans)
 
     const typeFilter = searchParams.get("type")
 
