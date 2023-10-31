@@ -16,7 +16,7 @@ Key Features
    2.Van Management
         Add Vans: Hosts have the ability to add new vans to the inventory.
         Remove Vans: Hosts can remove vans from the inventory.
-        Host Vans: Allowing hosts to view their inventory.
+        Host Vans: Allowing hosts to view their inventory and change renting pricing.
 
    3.Vans Display
         Vans Tab: The application displays all available vans.
