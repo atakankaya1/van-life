@@ -20,20 +20,20 @@ export default function VanDetail() {
     const van = data.find((van) => van.id === params.id);;
     console.log(van)
 
-    const search = location.state?.search || "";
-    const type = location.state?.type || "all";
+    const search = location.state?.search || ""
+    const type = location.state?.type || "all"
 
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div>Loading...</div>
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return <div>Error: {error.message}</div>
     }
 
     if (!van) {
-        return <div>Van not found</div>;
+        return <div>Van not found</div>
     }
 
     return (

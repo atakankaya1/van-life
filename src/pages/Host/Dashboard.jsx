@@ -55,9 +55,7 @@ export default function Dashboard() {
                 <div className="info">
                     <h1>Welcome!</h1>
                     <p>This is your host page.</p>
-                    
                 </div>
-                
             </section>
             <section className="host-dashboard-vans">
                 <div className="top">

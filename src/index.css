@@ -387,6 +387,12 @@ i[class*='van-type-'] {
   margin-right: 17px;
 }
 
+.info,
+.top h2,
+.addVan-header{
+  margin-left: 20px;
+}
+
 .host-van-info h3 {
   font-size: 20px;
   font-weight: 600;
@@ -585,7 +591,8 @@ i[class*='van-type-'] {
   transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.add-van:hover{
+.add-van:hover,
+.addVan-container button:hover{
   background-color: green;
 }
 
@@ -600,4 +607,37 @@ i[class*='van-type-'] {
 .logout:hover{
     background-color: red;
     transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.addVan-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.addVan-container label {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  min-width: 300px;
+}
+
+.addVan-container input {
+  margin-top: 10px;
+}
+
+.addVan-container button {
+  margin: 10px 0 0 20px;
+  color: white;
+  background-color: #79894a;
+  padding: 6px 26px;
+  font-style: normal;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }

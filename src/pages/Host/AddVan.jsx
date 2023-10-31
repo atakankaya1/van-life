@@ -1,8 +1,9 @@
 import { requireAuth } from "../../utils"
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addVan } from "../../store";
-import { nanoid } from "@reduxjs/toolkit";
+import React, { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { addVan } from "../../store"
+import { nanoid } from "@reduxjs/toolkit"
+import { useNavigate } from "react-router-dom"
 
 
 export async function loader() {
@@ -11,7 +12,8 @@ export async function loader() {
 }
 
 export default function AddVan() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const {id} = useSelector((state)=>{
     return state.user
     })
@@ -27,12 +29,13 @@ export default function AddVan() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setVanData({ ...vanData, [name]: value });
+    setVanData({ ...vanData, [name]: value })
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addVan(vanData));
+    dispatch(addVan(vanData))
+    navigate("/host")
     setVanData({
       id: nanoid(),
       name: "",
@@ -44,9 +47,12 @@ export default function AddVan() {
     });
   };
 
+  //addvan'den sonra redirect
+
   return (
     <div>
-      <h2>Add Van</h2>
+      <h2 className="addVan-header">Add Van</h2>
+      <div className="addVan-container">
       <form onSubmit={handleSubmit}>
         <label>
           Name:
@@ -83,6 +89,7 @@ export default function AddVan() {
         </label>
         <button type="submit">Add Van</button>
       </form>
+      </div>
     </div>
   );
 }

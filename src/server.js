@@ -36,5 +36,5 @@ export function makeServer({ environment = 'test' } = {}) {
     }
 })
 
-return server;
+return server
 }

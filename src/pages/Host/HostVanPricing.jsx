@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import { useLoaderData, useNavigate } from "react-router-dom"
-import { changePrice } from "../../store";
-import { useDispatch } from "react-redux";
+import { changePrice } from "../../store"
+import { useDispatch } from "react-redux"
 
 
 export default function HostVanPricing() {

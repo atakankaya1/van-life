@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 import { login } from "../thunks/fetchLogin"
 
 const userSlice = createSlice({
@@ -13,9 +13,9 @@ const userSlice = createSlice({
   },
   reducers: {
     logoutUser: (state) => {
-      state.loggedIn = false;
-      state.name = "";
-      state.id = "";
+      state.loggedIn = false
+      state.name = ""
+      state.id = ""
     },
     loginedInUser : (state, action) => {
       state.name = action.payload.name
@@ -49,7 +49,7 @@ const userSlice = createSlice({
    }
 });
 
-export const { logoutUser, loginedInUser } = userSlice.actions;
-export const selectUser = (state) => state.user.user;
+export const { logoutUser, loginedInUser } = userSlice.actions
+export const selectUser = (state) => state.user.user
 
-export const userReducer = userSlice.reducer;
+export const userReducer = userSlice.reducer
