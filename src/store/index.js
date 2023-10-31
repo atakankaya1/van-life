@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {userReducer, logoutUser, loginedInUser} from './slices/loginSlice';
 import {vanReducer, removeVan} from './slices/vanSlice';
-import { loadVans, addVan, deleteVan } from "./thunks/fetchVans" 
+import { loadVans, addVan, deleteVan, changePrice } from "./thunks/fetchVans" 
 import { login } from "./thunks/fetchLogin"
 
 const store = configureStore({
@@ -11,5 +11,5 @@ const store = configureStore({
   },
 });
 
-export {store, removeVan, logoutUser, loadVans, login, loginedInUser, addVan, deleteVan};
+export {store, removeVan, logoutUser, loadVans, login, loginedInUser, addVan, deleteVan, changePrice};
 
