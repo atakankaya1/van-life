@@ -6,7 +6,8 @@ import {
     doc,
     getDocs,
     setDoc,
-    deleteDoc 
+    deleteDoc,
+    updateDoc
 } from "firebase/firestore/lite"
 
 const firebaseConfig = {
@@ -22,6 +23,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
 const vansCollectionRef = collection(db, "vans")
+
+ 
 
 export async function getVans() {
     const querySnapshot = await getDocs(vansCollectionRef)
@@ -40,6 +43,17 @@ export async function postVan(vanData) {
 export async function delVan(vanId) {
     await deleteDoc(doc(db, "vans", vanId));
 }
+
+export async function priceVan(van) {
+    const { id, price } = van
+    const priceDoc = doc(db, "vans", id);
+    await updateDoc(priceDoc, {
+        price: price
+    })
+    
+}
+
+
 
 
 

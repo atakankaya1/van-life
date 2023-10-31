@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { getVans, postVan, delVan } from '../../api';
+import { getVans, postVan, delVan, priceVan } from '../../api';
 
  const loadVans = createAsyncThunk('vans/loadVans', async (id) => {
     try {
@@ -28,5 +28,15 @@ import { getVans, postVan, delVan } from '../../api';
     }
   });
 
+  const changePrice = createAsyncThunk('vans/priceVan', async (van) => {
+    try {
+      const response = priceVan(van);
+      return response; 
+    } catch (error) {
+      console.log(error)
+      throw error;
+    }
+  });
+
  
-  export {addVan, loadVans, deleteVan}
+  export {addVan, loadVans, deleteVan, changePrice }
